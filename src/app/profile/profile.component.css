@@ -1,0 +1,15 @@
+.gradient-custom {
+    /* background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1)); */
+    background: linear-gradient(to right bottom, rgb(80, 80, 80), rgb(0, 0, 0));
+}
+
+.name-container{
+    margin: auto;
+}
+
+.upgrade-btn{
+    background: linear-gradient(to right bottom, rgb(80, 80, 80), rgb(0, 0, 0));
+    color:rgb(255, 255, 255);
+    border-color:rgb(233, 57, 57);
+    border-radius: 10px;
+}

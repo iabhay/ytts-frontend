@@ -1,0 +1,8 @@
+<div class="backdrop" (click)="onClose()"></div>
+<div class="alert-box">
+    <h4  *ngIf="ifShow">Loading...</h4>
+    <h4 *ngIf="!ifShow">Your services changed successfully.</h4>
+    <div class="alert-box-actions">
+        <button class="btn btn-primary" #close (click)="onClose()">Close</button>
+    </div>
+</div>

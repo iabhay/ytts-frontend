@@ -1,0 +1,52 @@
+
+
+.nav-link{
+    font-size: large;
+    color: #1a1a1a;
+}
+.nav-link:hover,
+.nav-link:focus {
+  opacity: .75;
+}
+
+.btn {
+  background-color: #1a1a1a;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  margin-right: 2%;
+}
+
+.btn:hover,
+.btn:focus {
+  opacity: .75;
+}
+
+.main-logo{
+  margin-left: 10px;
+}
+
+#website-logo{
+  margin-left: 2%;
+  font-family: "philosopher";
+  font-size: 32px;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  margin-right: 2%;
+}
+
+#authBtn{
+    text-decoration: none;
+    background-color: #1a1a1a;
+    color: rgb(237, 230, 225);
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+#authBtn span{
+    font-size: 1.2em;
+    margin-right: 0.7em;
+}
+
