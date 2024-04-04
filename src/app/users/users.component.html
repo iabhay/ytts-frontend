@@ -1,0 +1,12 @@
+<div id="main-container">
+    <div id="main-head">
+        <h1>Manage Users</h1>
+    </div>
+    <div id="cards">
+        <app-card title="All Users" description="Fetch all Users" actionText="Fetch" routeTarget="/admin/manage-users/all"></app-card>
+        <app-card title="Premium Users" description="Fetch all Premium Users" actionText="Fetch" routeTarget="/admin/manage-users/premium"></app-card>
+        <app-card title="Non Premium Users" description="Fetch all Non Premium Users" actionText="Fetch" routeTarget="/admin/manage-users/nonpremium"></app-card>
+        <app-card title="User" description="Fetch User" actionText="Fetch" routeTarget="/admin/manage-users/user"></app-card>
+      </div>
+      <router-outlet></router-outlet>
+</div>

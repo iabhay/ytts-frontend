@@ -1,0 +1,35 @@
+<div id="main-container">
+    <div class="main-head">Users</div>
+    <p-table 
+        [value]="users" 
+        (sortFunction)="customSort($event)" 
+        [customSort]="true" 
+        [tableStyle]="{'min-width': '60rem'}"
+        [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }" currentPageReportTemplate="Showing {first} to {last} of {totalRecords}entries"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        >
+        <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="date" style="width:20%">Date<p-sortIcon field="date_time"></p-sortIcon></th>
+            <th pSortableColumn="created_at" style="width:20%">Created At<p-sortIcon field="created_at"></p-sortIcon></th>
+            <th pSortableColumn="uid" style="width:20%">UID<p-sortIcon field="uid"></p-sortIcon></th>
+            <th pSortableColumn="username" style="width:20%">Username<p-sortIcon field="username"></p-sortIcon></th>
+            <th pSortableColumn="role" style="width:20%">Role<p-sortIcon field="role"></p-sortIcon></th>
+            <th pSortableColumn="search_count" style="width:20%">Search Counts<p-sortIcon field="search_count"></p-sortIcon></th>
+            <th pSortableColumn="ban_status" style="width:20%">Ban Status<p-sortIcon field="ban_status"></p-sortIcon></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+        <tr>
+            <td>{{user.date_time}}</td>
+            <td>{{user.created_at}}</td>
+            <td>{{user.uid}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.role}}</td>
+            <td>{{user.search_count}}</td>
+            <td>{{user.ban_status}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+</div>

@@ -4,15 +4,18 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { AdminComponent } from "./admin.component";
+import { UsersComponent } from "../users/users.component";
+import { Table, TableModule } from "primeng/table";
+import { HttpClientModule } from "@angular/common/http";
+import { MessagesComponent } from "../messages/messages.component";
+import { MessagesModule } from "../messages/messages.module";
+import { UsersModule } from "../users/users.module";
+import { UserComponent } from "../users/user/user.component";
 
 
 const adminRoutes: Routes = [
     {
         path:'admin', component: AdminComponent,
-        children:[ 
-            // {path: 'manage-users', component: PremiumListingComponent},
-            // {path:'history', component: HistoryComponent}
-        ]
     },
 ]
 
@@ -24,10 +27,14 @@ const adminRoutes: Routes = [
         FormsModule,
         ReactiveFormsModule, 
         RouterModule.forChild(adminRoutes),
-        SharedModule
+        SharedModule,
+        TableModule,
+        HttpClientModule,
+        MessagesModule,
+        UsersModule
         
     ],
-    exports: [RouterModule],
+    exports: [RouterModule, TableModule],
     providers: []
 })
 export class AdminModule {

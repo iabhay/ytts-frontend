@@ -21,6 +21,9 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ProfileInterceptor } from './profile/profile-interceptor.service';
 import { AdminModule } from './admin/admin.module';
+import { UsersModule } from './users/users.module';
+import { MessagesModule } from './messages/messages.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 @NgModule({
@@ -29,8 +32,6 @@ import { AdminModule } from './admin/admin.module';
     NavComponent,
     TranscriptComponent,
     AuthComponent,
-    // HistoryComponent,
-    // PremiumListingComponent,
     RoleComponent
   ],
   imports: [
@@ -48,9 +49,8 @@ import { AdminModule } from './admin/admin.module';
     ProfileModule,
     ToastModule,
     AdminModule
-    
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: ProfileInterceptor, multi: true}, MessageService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: ProfileInterceptor, multi: true}, MessageService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
