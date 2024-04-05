@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container" *ngIf="!loggedIn">
     <div class="left-container">
         <div class="img-container">
             <img src="../../assets/logos/logo-no-background.png" width="80%">
@@ -7,7 +7,7 @@
             </p>
         </div>
     </div>
-    <div class="container col-lg-12"  id="primary-container">
+    <div class="container col-lg-12"  id="primary-container" >
         <h2 class="main-head">{{isLoginMode ? 'Login': 'Signup'}}</h2>
         <div class="row col-xs-6 block2 center my-3" id="secondary-container">
             <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
@@ -57,4 +57,8 @@
 </form>
 </div>
 </div>
+</div>
+
+<div *ngIf="loggedIn">
+    <h1>Login Again..</h1>
 </div>

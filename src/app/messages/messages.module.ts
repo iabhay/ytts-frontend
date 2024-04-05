@@ -7,10 +7,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
 import { SharedModule } from "../shared/shared.module";
 import { UserMessageComponent } from "./user-message/user-message.component";
+import { loginGuard } from "../guards/login.guard";
 
 const messageRoutes: Routes = [
     {
-        path: 'admin/manage-messages', component: MessagesComponent,
+        path: 'admin/manage-messages',canActivate: [loginGuard], component: MessagesComponent,
         children: [
 
             {path:'user', component: UserMessageComponent},

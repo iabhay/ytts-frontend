@@ -7,11 +7,12 @@ import { SharedModule } from "../shared/shared.module";
 import { PremiumListingComponent } from "./premium-listing/premium-listing.component";
 import { HistoryComponent } from "./history/history.component";
 import { TableModule } from "primeng/table";
+import { loginGuard } from "../guards/login.guard";
 
 
 const featureRoutes: Routes = [
     {
-        path:'features', component: FeaturesComponent,
+        path:'features',canActivate: [loginGuard], component: FeaturesComponent,
         children:[ 
             {path: 'premiumlist', component: PremiumListingComponent},
             {path:'history', component: HistoryComponent}

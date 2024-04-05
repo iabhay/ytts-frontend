@@ -11,11 +11,14 @@ import { MessagesComponent } from "../messages/messages.component";
 import { MessagesModule } from "../messages/messages.module";
 import { UsersModule } from "../users/users.module";
 import { UserComponent } from "../users/user/user.component";
+import { loginGuard } from "../guards/login.guard";
+import { adminGuard } from "../guards/admin.guard";
 
 
 const adminRoutes: Routes = [
     {
         path:'admin', component: AdminComponent,
+        canActivate: [loginGuard, adminGuard]
     },
 ]
 

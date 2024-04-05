@@ -6,8 +6,19 @@
     </div>
     <div class="main-input">
         <div class="inp-here">
-            <input class="main-inp" type="text"/>
-            <button class="btn" id="btn-gen" type="button">Generate</button>
+            <input class="main-inp" type="text" placeholder="Enter your link" #transcript/>
+            <button class="btn" id="btn-gen" type="button" (click)="onSubmit()">Generate</button>
+        </div>
+    </div>
+    <div class="res" *ngIf="summary">
+        <hr>
+        <div class="resContainer">
+            <h2>Summary</h2>
+            <p>{{summary.summary}}</p>
+        </div>
+        <div class="resContainer">
+            <h2>Transcript</h2>
+            <p>{{summary.transcript}}</p>
         </div>
     </div>
 </div>

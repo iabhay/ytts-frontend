@@ -9,6 +9,7 @@ export class OpenerComponent{
     @Input() title: string;
     @Input() description: string;
     @Input() actionText: string;
+    @Input() routeTarget: string;
     @Output() close = new EventEmitter<void>();
     
     onClose(){

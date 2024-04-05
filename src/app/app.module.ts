@@ -9,8 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { TranscriptComponent } from './transcript/transcript.component';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HistoryComponent } from './features/history/history.component';
-import { PremiumListingComponent } from './features/premium-listing/premium-listing.component';
 import {ButtonModule} from 'primeng/button';
 import { FeatureModule } from './features/features-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -21,8 +19,6 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ProfileInterceptor } from './profile/profile-interceptor.service';
 import { AdminModule } from './admin/admin.module';
-import { UsersModule } from './users/users.module';
-import { MessagesModule } from './messages/messages.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
