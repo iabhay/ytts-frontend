@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { RoleChangeService } from './role-change/role-change.service';
 import { ProfileService } from './profile.service';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit{
   profileSub: Subscription;
   openerCmp;
 
-  constructor(private vcr: ViewContainerRef, private roleChange: RoleChangeService, private profileService: ProfileService, private msgService: MessageService){}
+  constructor(private vcr: ViewContainerRef, private roleChange: RoleChangeService, private profileService: ProfileService, private msgService: MessageService, private router: Router){}
 
   ngOnInit() {
     this.profileService.profileData().subscribe({next: res =>{
@@ -40,15 +41,16 @@ export class ProfileComponent implements OnInit{
 
 
   updateRole(){
-    const title = 'Are you sure?';
-    const description = 'This will charge you Rs. 59/Month';
-    const actionText = 'Proceed';
-    const routeTarget = 'profile/role-change';
-    this.cardOpener(title,description,actionText, routeTarget);
+    this.router.navigate(['role-change']);
+    // const title = 'Are you sure?';
+    // const description = 'This will charge you Rs. 59/Month';
+    // const actionText = 'Proceed';
+    // const routeTarget = 'role-change';
+    // this.cardOpener(title,description,actionText, routeTarget);
   }
 
   sendMessage(){
-
+    
   }
 
   cardOpener(title: string, description: string, actionText: string, routeTarget: string){

@@ -2,6 +2,7 @@ import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } fro
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit, OnDestroy{
   isLoggedIn = false;
 
-  constructor(private router:Router, private authService: AuthService){} 
+  constructor(private router:Router, private authService: AuthService, private msgService: MessageService){} 
 
   ngOnInit(){
     this.authService.loggedin.subscribe(res => {
@@ -23,6 +24,11 @@ export class NavComponent implements OnInit, OnDestroy{
       console.log(res);
     })
     this.isLoggedIn = false;
+    this.msgService.add({
+      severity: 'Success',
+      summary: 'Logout Successfull!',
+      detail: 'Successfully logged out!'
+    })
     this.router.navigate(['auth']);
   }
 

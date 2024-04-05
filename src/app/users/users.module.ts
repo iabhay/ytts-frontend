@@ -8,6 +8,11 @@ import { UsersComponent } from "./users.component";
 import { UserComponent } from "./user/user.component";
 import { SharedModule } from "../shared/shared.module";
 import { loginGuard } from "../guards/login.guard";
+import { ToastModule } from "primeng/toast";
+import { ToolbarModule } from 'primeng/toolbar'; 
+import { ConfirmationService } from "primeng/api";
+import { DialogModule } from "primeng/dialog";
+import { ButtonModule } from "primeng/button";
 
 const userRoutes: Routes = [
     {path: 'admin/manage-users',
@@ -32,10 +37,15 @@ const userRoutes: Routes = [
         SharedModule,
         TableModule,
         HttpClientModule,
-        RouterModule.forChild(userRoutes)
+        RouterModule.forChild(userRoutes),
+        ToastModule,
+        ToolbarModule,
+        DialogModule,
+        ButtonModule
+
     ],
-    exports: [RouterModule, UserComponent, TableModule],
-    providers: [],
+    exports: [RouterModule, UserComponent, TableModule, ToastModule, ToolbarModule, DialogModule],
+    providers: [ConfirmationService],
 })
 export class UsersModule {
 

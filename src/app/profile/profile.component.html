@@ -9,7 +9,7 @@
                 <img src="../../assets/profile-view/profile-view-icon.png"
                   alt="Avatar" class="img-fluid my-3" style="width: 120px;" />
                 <h5>{{user.username }}</h5>
-                <p>{{user.role === 'premiumuser' ? 'Premium User': 'Non Premium User'}}</p>
+                <p>{{user.role === 'premiumuser' ? 'Premium User': user.role === 'admin'? 'Admin':'Non Premium User'}}</p>
                 <i class="far fa-edit mb-5"></i>
               </div>
               <div class="col-md-8">
@@ -37,7 +37,7 @@
                       </div>
                   </div>
                   <hr class="mt-0 mb-4">
-                  <div class="row pt-1">
+                  <div class="row pt-1" *ngIf="user.role !== 'admin'">
                     <div class="col-6 mb-3">
                       <h6>{{user.role.includes('premium') ? 'Get Premium': 'Cancel Premium'}}</h6>
                       <button class="upgrade-btn" (click)="updateRole()">{{user.role.includes('premium') ? 'Downgrade': 'Upgrade'}}</button>

@@ -16,7 +16,7 @@ import { TableModule } from 'primeng/table';
 import { RoleComponent } from './profile/role-change/role.component';
 import { ProfileModule } from './profile/profile.module';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { MessageService, PrimeIcons } from 'primeng/api';
 import { ProfileInterceptor } from './profile/profile-interceptor.service';
 import { AdminModule } from './admin/admin.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -44,7 +44,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     TableModule,
     ProfileModule,
     ToastModule,
-    AdminModule
+    AdminModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: ProfileInterceptor, multi: true}, MessageService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
