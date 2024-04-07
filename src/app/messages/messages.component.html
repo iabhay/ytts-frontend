@@ -1,14 +1,7 @@
 <div id="main-container">
-    <div id="main-head">
-        <h1>Available Types</h1>
-    </div>
-    <div id="cards">
-        <app-card title="All Messages" description="Fetch all Messages" actionText="Show" routeTarget="/admin/manage-messages/all"></app-card>
-        <app-card title="Premium Messages" description="Fetch all Premium Messages" actionText="Show" routeTarget="/admin/manage-messages/premium"></app-card>
-        <app-card title="Non Premium Messages" description="Fetch all Non Premium Messages" actionText="Show" routeTarget="/admin/manage-messages/nonpremium"></app-card>
-        <app-card title="User Messages" description="Fetch all user Messages" actionText="Show" routeTarget="/admin/manage-messages/user"></app-card>
-      </div>
-      <div>
-      </div>
-    <router-outlet></router-outlet>
+  <div id="main-head">
+    <h1>Manage Messages</h1>
+  </div>
+  <div id="cards">
+    <app-user-message></app-user-message>
 </div>

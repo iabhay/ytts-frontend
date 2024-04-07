@@ -1,0 +1,17 @@
+#main-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #main-head {
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #cards {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4%;
+  }
+  

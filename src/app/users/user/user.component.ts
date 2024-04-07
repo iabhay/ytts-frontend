@@ -1,22 +1,23 @@
-import {
-  Component,
-  DoCheck,
-  OnChanges,
-  OnInit,
-  ViewContainerRef,
-} from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { UserService } from '../users.service';
-import { ActivatedRoute, OnSameUrlNavigation } from '@angular/router';
-import { OverlayComponent } from '../../shared/overlay/overlay.component';
+import { ActivatedRoute, OnSameUrlNavigation, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { AuthService } from '../../auth/auth.service';
+
+interface Roles {
+  role: String;
+}
+interface Statuses {
+  status: String;
+}
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
 })
-export class UserComponent implements OnInit, OnChanges, DoCheck {
+export class UserComponent implements OnInit {
   users;
   openerCmp;
   counter = 0;
@@ -27,30 +28,25 @@ export class UserComponent implements OnInit, OnChanges, DoCheck {
   submitted: boolean = false;
   statuses!: any[];
 
+  roles: Roles[];
+  banStatuses: Statuses[];
+
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
     private vcr: ViewContainerRef,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    let target = 'all';
-    const routeTarget = this.route.url.subscribe(res => {
-      target = routeTarget[0].path;
+    this.roles = [{ role: 'Premium User' }, { role: 'Non Premium User' }];
+    this.banStatuses = [{ status: 'Ban' }, { status: 'Unban' }];
+    this.userService.fetchUsers().subscribe((res) => {
+      this.users = res;
     });
-    if (target === 'all') {
-      this.userService.fetchUsers().subscribe((res) => {
-        this.users = res;
-      });
-    } else if (target === 'user') {
-      // this.userService.fetchUser(user_id).subscribe(res => {
-      //   this.users = res;
-      // })
-    }
   }
-
 
   openNew() {
     this.user = {};
@@ -58,47 +54,13 @@ export class UserComponent implements OnInit, OnChanges, DoCheck {
     this.userDialog = true;
   }
 
-  deleteSelectedUsers() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected users?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.users = this.users.filter(
-          (val) => !this.selectedUsers?.includes(val)
-        );
-        this.selectedUsers = null;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Users Deleted',
-          life: 3000,
-        });
-      },
-    });
-  }
-
   editUser(user) {
     this.user = { ...user };
     this.userDialog = true;
   }
 
-  deleteUser(user) {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + user.username + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.users = this.users.filter((val) => val.id !== user.uid);
-        this.user = {};
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'User Deleted',
-          life: 3000,
-        });
-      },
-    });
+  showUser(user) {
+    this.router.navigate(['admin/manage-users/user-detail', user.uid]);
   }
 
   hideDialog() {
@@ -108,30 +70,75 @@ export class UserComponent implements OnInit, OnChanges, DoCheck {
 
   saveUser() {
     this.submitted = true;
+    this.users[this.findIndexById(this.user.id)] = this.user;
+    this.user.role = this.user.role.role;
+    this.user.ban_status = this.user.ban_status.status;
+    const roleNew = this.user.role;
+    const banStatus = this.user.ban_status;
+    const uid = this.user.uid;
 
-    if (this.user.username?.trim()) {
-      if (this.user.uid) {
-        this.users[this.findIndexById(this.user.id)] = this.user;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'User Updated',
-          life: 3000,
-        });
-      } else {
-        this.users.push(this.user);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'User Created',
-          life: 3000,
-        });
-      }
-
-      this.users = [...this.users];
-      this.userDialog = false;
-      this.user = {};
+    if (roleNew === 'Premium User') {
+      this.userService.upgrade_user(uid).subscribe({
+        next: (res) => {
+          this.showSuccess(res.message);
+        },
+        error: (err) => {
+          this.showError(err);
+        },
+      });
+    } else if (roleNew === 'Non Premium User') {
+      this.userService.downgrade_user(uid).subscribe({
+        next: (res) => {
+          this.showSuccess(res.message);
+        },
+        error: (err) => {
+          this.showError(err);
+        },
+      });
     }
+
+    if (banStatus === 'Ban') {
+      this.userService.ban_user(uid).subscribe({
+        next: (res) => {
+          this.showSuccess(res.message);
+        },
+        error: (err) => {
+          this.showError(err);
+        },
+      });
+    } else if (banStatus === 'Unban') {
+      this.userService.unban_user(uid).subscribe({
+        next: (res) => {
+          this.showSuccess(res.message);
+        },
+        error: (err) => {
+          this.showError(err);
+        },
+      });
+    }
+    this.users = [...this.users];
+    this.userDialog = false;
+    this.user = {};
+  }
+
+  showSuccess(msg) {
+    this.messageService.add({
+      severity: 'Success',
+      summary: msg,
+      detail: 'User Updated!',
+      life: 6000,
+      closable: true,
+    });
+  }
+
+  showError(msg) {
+    this.messageService.add({
+      severity: 'Failed',
+      summary: msg,
+      detail: 'User not Updated!',
+      life: 6000,
+      closable: true,
+    });
   }
 
   findIndexById(uid: string): number {
@@ -144,26 +151,4 @@ export class UserComponent implements OnInit, OnChanges, DoCheck {
     }
     return index;
   }
-
-  // createId(): string {
-  //   let id = '';
-  //   var chars =
-  //     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  //   for (var i = 0; i < 5; i++) {
-  //     id += chars.charAt(Math.floor(Math.random() * chars.length));
-  //   }
-  //   return id;
-  // }
-  ngDoCheck() {}
-
-  ngOnChanges() {}
-
-  customSort(event) {}
-
-  // cardOpener(){
-  //   this.openerCmp = this.vcr.createComponent(OverlayComponent);
-  //   this.openerCmp.instance.close.subscribe(() => {
-  //     this.vcr.clear();
-  //   });
-  // }
 }

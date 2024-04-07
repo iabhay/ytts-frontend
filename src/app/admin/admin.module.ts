@@ -4,15 +4,13 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { AdminComponent } from "./admin.component";
-import { UsersComponent } from "../users/users.component";
-import { Table, TableModule } from "primeng/table";
+import { TableModule } from "primeng/table";
 import { HttpClientModule } from "@angular/common/http";
-import { MessagesComponent } from "../messages/messages.component";
 import { MessagesModule } from "../messages/messages.module";
 import { UsersModule } from "../users/users.module";
-import { UserComponent } from "../users/user/user.component";
 import { loginGuard } from "../guards/login.guard";
 import { adminGuard } from "../guards/admin.guard";
+import { UrlsModule } from "../urls/urls.module";
 
 
 const adminRoutes: Routes = [
@@ -34,8 +32,8 @@ const adminRoutes: Routes = [
         TableModule,
         HttpClientModule,
         MessagesModule,
-        UsersModule
-        
+        UsersModule,
+        UrlsModule
     ],
     exports: [RouterModule, TableModule],
     providers: []

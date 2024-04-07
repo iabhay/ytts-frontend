@@ -1,24 +1,42 @@
 <div class="cont">
-    <div class="heading">
-        <img class="main-img" src="/assets/logos/logo-no-background.png" width="30%"/>
-        <hr>
-        <p>You can generate transcript for the video link you provided.</p>
+  <div class="heading">
+    <img
+      class="main-img"
+      src="/assets/logos/logo-white-tp-alter.png"
+      width="20%"
+    />
+    <hr />
+    <p>You can generate transcript for the video link you provided.</p>
+  </div>
+  <div class="main-input">
+    <div class="inp-here">
+      <input
+        class="main-inp"
+        type="text"
+        placeholder="Enter your link"
+        #transcript
+      />
+      <button class="btn" id="btn-gen" type="button" (click)="onSubmit()">
+        Generate
+      </button>
     </div>
-    <div class="main-input">
-        <div class="inp-here">
-            <input class="main-inp" type="text" placeholder="Enter your link" #transcript/>
-            <button class="btn" id="btn-gen" type="button" (click)="onSubmit()">Generate</button>
-        </div>
+  </div>
+  <div class="res" *ngIf="summary">
+    <hr />
+    <div class="resContainer">
+      <h1>Summary</h1>
+      <p>{{ summary.summary }}</p>
     </div>
-    <div class="res" *ngIf="summary">
-        <hr>
-        <div class="resContainer">
-            <h2>Summary</h2>
-            <p>{{summary.summary}}</p>
-        </div>
-        <div class="resContainer">
-            <h2>Transcript</h2>
-            <p>{{summary.transcript}}</p>
-        </div>
+    <div class="resContainer">
+      <h1>Transcript</h1>
+      <p>{{ summary.transcript }}</p>
     </div>
+  </div>
+  <div class="res" *ngIf="errorRes">
+    <hr />
+    <div class="resContainer">
+      <h1>Oops!</h1>
+      <p>{{ errorRes }}</p>
+    </div>
+  </div>
 </div>

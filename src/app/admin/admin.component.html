@@ -1,12 +1,27 @@
 <div id="main-container">
-    <div id="main-head">
-        <h1>Available Features</h1>
-    </div>
-    <div id="cards">
-        <app-card title="Manage Users" description="Functionalities for users" actionText="Manage" routeTarget="/admin/manage-users"></app-card>
-        <app-card title="Manage Messages" description="Functionalities of Messages" actionText="Manage" routeTarget="/admin/manage-messages"></app-card>
-      </div>
-      <div>
-      </div>
-      <router-outlet></router-outlet>
+  <div id="main-head">
+    <h1>Available Features</h1>
+  </div>
+  <div id="cards">
+    <app-card
+      title="Manage Users"
+      description="Functionalities for users"
+      actionText="Manage"
+      routeTarget="/admin/manage-users"
+    ></app-card>
+    <app-card
+      title="Manage Messages"
+      description="Functionalities of Messages"
+      actionText="Manage"
+      routeTarget="/admin/manage-messages"
+    ></app-card>
+    <app-card
+      title="Manage Urls"
+      description="Functionalities of Urls"
+      actionText="Manage"
+      routeTarget="/admin/manage-urls"
+    ></app-card>
+  </div>
+  <div></div>
+  <router-outlet></router-outlet>
 </div>

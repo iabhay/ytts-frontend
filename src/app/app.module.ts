@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TranscriptComponent } from './transcript/transcript.component';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { FeatureModule } from './features/features-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { TableModule } from 'primeng/table';
@@ -21,14 +21,13 @@ import { ProfileInterceptor } from './profile/profile-interceptor.service';
 import { AdminModule } from './admin/admin.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     TranscriptComponent,
     AuthComponent,
-    RoleComponent
+    RoleComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +37,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ButtonModule, 
+    ButtonModule,
     FeatureModule,
     SharedModule,
     TableModule,
@@ -46,7 +45,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ToastModule,
     AdminModule,
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: ProfileInterceptor, multi: true}, MessageService, provideAnimationsAsync()],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ProfileInterceptor, multi: true },
+    MessageService,
+    provideAnimationsAsync(),
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

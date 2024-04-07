@@ -1,27 +1,72 @@
 <div id="main-container">
-    <div class="main-head">PremiumLists</div>
-    <p-table 
-        [value]="premiumlists" 
-        (sortFunction)="customSort($event)" 
-        [customSort]="true" 
-        [tableStyle]="{'min-width': '60rem'}"
-        [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }" currentPageReportTemplate="Showing {first} to {last} of {totalRecords}entries"
-        [rowsPerPageOptions]="[5, 10, 20]"
-        >
-        <ng-template pTemplate="header">
+  <h1>Premium Listings</h1>
+  <div class="add-pl">
+    <p-button
+    styleClass="add-btn"
+    label="Add"
+    icon="pi pi-plus"
+    (click)="toggle()"
+      ></p-button>
+      <p-overlay [(visible)]="overlayVisible" styleClass="overlay-btn">
+        <form #inpForm="ngForm" (ngSubmit)="addPremiumlist(inpForm)">
+          <div class="form-group">
+            <label class="overlay-fields" style="font-size: large" for="inp_url"
+              >Enter URL:
+            </label>
+            <input
+            class="overlay-fields form-control"
+            style="margin-left: 1%"
+              id="inp_url"
+              ngModel
+              name="inp_url"
+              placeholder="Enter Youtube URL"
+              />
+              <button
+              class="overlay-fields"
+              [disabled]="!inpForm.valid"
+              type="submit"
+              (click)="(addPremiumlist)"
+              >
+              Submit
+            </button>
+          </div>
+        </form>
+      </p-overlay>
+    </div>
+    <div *ngIf="!errorMessage">
+    <p-table
+      [value]="premiumlists"
+      [customSort]="true"
+      [tableStyle]="{ width: '70rem' }"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords}entries"
+      [rowsPerPageOptions]="[5, 10, 20]"
+    >
+      <ng-template pTemplate="header">
         <tr>
-            <th pSortableColumn="date" style="width:20%">Date<p-sortIcon field="date"></p-sortIcon></th>
-            <th pSortableColumn="pid" style="width:20%">PID<p-sortIcon field="pid"></p-sortIcon></th>
-            <th pSortableColumn="url_id" style="width:20%">URL ID<p-sortIcon field="url_id"></p-sortIcon></th>
+          <th pSortableColumn="date" style="width: 20%">
+            Date<p-sortIcon field="date"></p-sortIcon>
+          </th>
+          <th pSortableColumn="pid" style="width: 20%">
+            PID<p-sortIcon field="pid"></p-sortIcon>
+          </th>
+          <th pSortableColumn="url_id" style="width: 20%">
+            URL ID<p-sortIcon field="url_id"></p-sortIcon>
+          </th>
         </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-premiumlist>
+      </ng-template>
+      <ng-template pTemplate="body" let-premiumlist>
         <tr>
-            <td>{{premiumlist.date_time}}</td>
-            <td>{{premiumlist.pid}}</td>
-            <td>{{premiumlist.url_id}}</td>
+          <td>{{ premiumlist.date_time }}</td>
+          <td>{{ premiumlist.pid }}</td>
+          <td>{{ premiumlist.url_id }}</td>
         </tr>
-    </ng-template>
-</p-table>
-
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="error-container" *ngIf="errorMessage">
+    <h2>{{ errorMessage }}</h2>
+  </div>
 </div>

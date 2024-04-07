@@ -1,4 +1,10 @@
-import { Component, OnDestroy, Output, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewContainerRef,
+} from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { OpenerComponent } from '../shared/openers/opener.component';
@@ -12,7 +18,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css',
 })
-export class AuthComponent{
+export class AuthComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private vcr: ViewContainerRef,
@@ -26,55 +32,59 @@ export class AuthComponent{
   showSpinner = false;
   loginPrompt;
   loginSub: Subscription;
-  loggedInSub: Subscription;
+  ngOnInit(): void {
+    this.authService.loggedin.subscribe((res) => {
+      this.loggedIn = res;
+    });
+  }
 
   onSubmit(authForm: NgForm) {
-      if (!authForm.valid) {
-        return;
-      }
-      this.showSpinner = true;
-      const username = authForm.value.username;
-      const password = authForm.value.password;
-      if (this.isLoginMode) {
-        this.loginSub = this.authService.login(username, password).subscribe({
-          next: resp => {
-            this.showSpinner = false;
-            sessionStorage.setItem('access_token', resp.access_token);
-            sessionStorage.setItem('refresh_token', resp.refresh_token);
-            this.authService.loggedin.subscribe(res=>{
-              this.loggedIn = res;
-            })
-            this.showError('Success', 'Success', 'Login Successful');
-            this.router.navigateByUrl('');
-          },
-          error: errorRes => {
-            this.showSpinner = false;
-            this.showError('danger', 'Error', 'Authentication Unsuccessful');
+    if (!authForm.valid) {
+      return;
+    }
+    this.showSpinner = true;
+    const username = authForm.value.username;
+    const password = authForm.value.password;
+    if (this.isLoginMode) {
+      this.loginSub = this.authService.login(username, password).subscribe({
+        next: (resp) => {
+          this.showSpinner = false;
+          sessionStorage.setItem('access_token', resp.access_token);
+          sessionStorage.setItem('refresh_token', resp.refresh_token);
+          this.showError('Success', 'Success', 'Login Successful');
+          this.router.navigateByUrl('');
+        },
+        error: (errorRes) => {
+          this.showSpinner = false;
+          this.showError('danger', 'Error', 'Authentication Unsuccessful');
+          this.loginSub.unsubscribe();
+        },
+      });
+    } else {
+      this.loginSub = this.authService.signup(username, password).subscribe({
+        next: (res) => {
+          this.showSpinner = false;
+          this.showError(
+            'success',
+            'Signup Successful',
+            'Authentication Successful'
+          );
+          this.loginPrompt = this.vcr.createComponent(OpenerComponent);
+          this.loginPrompt.instance.title = 'Login Now';
+          this.loginPrompt.instance.description = 'Login Required!';
+          this.loginPrompt.instance.close.subscribe(() => {
+            this.router.navigateByUrl('/auth');
+            this.vcr.clear();
             this.loginSub.unsubscribe();
-          },
-        });
-        } else {
-          this.loginSub = this.authService.signup(username, password).subscribe({
-            next: res => {
-              this.showSpinner = false;
-              this.showError('success', 'Signup Successful', 'Authentication Successful');
-              this.loginPrompt = this.vcr.createComponent(OpenerComponent);
-              this.loginPrompt.instance.title = 'Login Now';
-              this.loginPrompt.instance.description = 'Login Required!';
-              this.loginPrompt.instance.close.subscribe(() => {
-                this.router.navigateByUrl('/auth');
-                this.vcr.clear();
-                this.loginSub.unsubscribe();
-                
-              });
-            },
-            error: error=>{
-              this.loginSub.unsubscribe();
-              this.showError('danger', 'Error', 'Authentication Unsuccessful');
-            },
           });
-          authForm.reset();
-        }
+        },
+        error: (error) => {
+          this.loginSub.unsubscribe();
+          this.showError('danger', 'Error', 'Authentication Unsuccessful');
+        },
+      });
+      authForm.reset();
+    }
   }
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;

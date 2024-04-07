@@ -1,0 +1,7 @@
+#toast {
+  color: black;
+}
+
+:host ::ng-deep p-toast {
+  background-color: black;
+}

@@ -1,77 +1,157 @@
 <div class="card">
-    <p-toolbar styleClass="mb-4 gap-2">
-        <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
-            <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedUsers()" [disabled]="!selectedUsers || !selectedUsers.length"></button>
-        </ng-template>
-    </p-toolbar>
-
-    <p-table
-        #dt
-        [value]="users"
-        [rows]="10"
-        [paginator]="true"
-        [globalFilterFields]="['username', 'created_at', 'date', 'ban_status', 'role']"
-        [tableStyle]="{ 'min-width': '75rem' }"
-        [(selection)]="selectedUsers"
-        [rowHover]="true"
-        dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [showCurrentPageReport]="true"
-    >
-        <ng-template pTemplate="caption">
-            <div class="flex align-items-center justify-content-between">
-                <h5 class="m-0">Manage Users</h5>
-                <span class="p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
-                </span>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="date" style="width:20%">Date<p-sortIcon field="date_time"></p-sortIcon></th>
-                <th pSortableColumn="created_at" style="width:20%">Created At<p-sortIcon field="created_at"></p-sortIcon></th>
-                <th pSortableColumn="uid" style="width:20%">UID<p-sortIcon field="uid"></p-sortIcon></th>
-                <th pSortableColumn="username" style="width:20%">Username<p-sortIcon field="username"></p-sortIcon></th>
-                <th pSortableColumn="role" style="width:20%">Role<p-sortIcon field="role"></p-sortIcon></th>
-                <th pSortableColumn="search_count" style="width:20%">Search Counts<p-sortIcon field="search_count"></p-sortIcon></th>
-                <th pSortableColumn="ban_status" style="width:20%">Ban Status<p-sortIcon field="ban_status"></p-sortIcon></th>
-                <th>Manage</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-user>
-            <tr>
-                <td>{{user.date_time}}</td>
-                <td>{{user.created_at}}</td>
-                <td>{{user.uid}}</td>
-                <td>{{user.username}}</td>
-                <td>{{user.role}}</td>
-                <td>{{user.search_count}}</td>
-                <td>{{user.ban_status}}</td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editUser(user)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteUser(user)"></button>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="summary">
-            <div class="flex align-items-center justify-content-between">In total there are {{ users ? users.length : 0 }} users.</div>
-        </ng-template>
-    </p-table>
+  <p-table
+    class="table-comp"
+    #dt
+    [value]="users"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="[
+      'username',
+      'created_at',
+      'date',
+      'ban_status',
+      'role'
+    ]"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [(selection)]="selectedUsers"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div
+        class="flex align-items-center justify-content-between"
+        id="search-comp"
+      >
+        <span class="p-input-icon-left">
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search..."
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="date" style="width: 20%">
+          Date<p-sortIcon field="date_time"></p-sortIcon>
+        </th>
+        <th pSortableColumn="created_at" style="width: 20%">
+          Created At<p-sortIcon field="created_at"></p-sortIcon>
+        </th>
+        <th pSortableColumn="uid" style="width: 20%">
+          UID<p-sortIcon field="uid"></p-sortIcon>
+        </th>
+        <th pSortableColumn="username" style="width: 20%">
+          Username<p-sortIcon field="username"></p-sortIcon>
+        </th>
+        <th pSortableColumn="role" style="width: 20%">
+          Role<p-sortIcon field="role"></p-sortIcon>
+        </th>
+        <th pSortableColumn="search_count" style="width: 20%">
+          Search Counts<p-sortIcon field="search_count"></p-sortIcon>
+        </th>
+        <th pSortableColumn="ban_status" style="width: 20%">
+          Ban Status<p-sortIcon field="ban_status"></p-sortIcon>
+        </th>
+        <th>Manage</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.date_time }}</td>
+        <td>{{ user.created_at }}</td>
+        <td>{{ user.uid }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.search_count }}</td>
+        <td>{{ user.ban_status }}</td>
+        <td id="buttons" style="display: flex; flex-direction: row">
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success mr-2"
+            (click)="editUser(user)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-user"
+            class="p-button-rounded"
+            style="color: rgb(255, 255, 255); background-color: rgb(0, 0, 0)"
+            (click)="showUser(user)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ users ? users.length : 0 }} users.
+      </div>
+    </ng-template>
+  </p-table>
 </div>
-<p-dialog [(visible)]="userDialog" [style]="{ width: '450px' }" header="User Details" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content">
-        <div class="field">
-            <label for="ban_Status">Ban Status</label>
-            <input type="text" pInputText id="ban_status" [(ngModel)]="user.ban_status" required autofocus />
-            <small class="p-error" *ngIf="submitted && !user.ban_status">Ban Status is required.</small>
-        </div>
-    </ng-template>
+<p-dialog
+  [(visible)]="userDialog"
+  [style]="{ width: '30%', height: '200%' }"
+  header="User Details"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="field">
+      <label for="ban_Status">Ban Status</label>
+      <p-dropdown
+        id="ban_status"
+        [options]="banStatuses"
+        [(ngModel)]="user.ban_status"
+        optionLabel="status"
+        [showClear]="true"
+        placeholder="Select Ban Status"
+        autofocus
+      ></p-dropdown>
+      <small class="p-error" *ngIf="submitted && !user.ban_status"
+        >Ban Status is required.</small
+      >
+    </div>
+    <div class="field">
+      <label for="role">Role</label>
+      <p-dropdown
+        id="role"
+        [options]="roles"
+        [(ngModel)]="user.role"
+        optionLabel="role"
+        [showClear]="true"
+        placeholder="Select a Role"
+        autofocus
+      ></p-dropdown>
+      <small class="p-error" *ngIf="submitted && !user.role"
+        >Role is required.</small
+      >
+    </div>
+  </ng-template>
 
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUser()"></button>
-        <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
-    </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveUser()"
+    ></button>
+    <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+  </ng-template>
 </p-dialog>

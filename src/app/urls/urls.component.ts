@@ -4,11 +4,11 @@ import { UserService } from '../users/users.service';
 
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrl: './messages.component.css'
+  selector: 'app-urls',
+  templateUrl: './urls.component.html',
+  styleUrl: './urls.component.css'
 })
-export class MessagesComponent{
+export class UrlsComponent{
 
     users;
 

@@ -1,17 +1,26 @@
-#main-container{
-    background-color: rgb(237, 230, 225);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.cards{
-    display: flex;
-    flex-direction: column;
-    margin-left: 4%;
+.cards {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4%;
 }
 
-#main-head{
-    margin-top: 3%;
-    margin-left: auto;
-    margin-right: auto;
+#main-head {
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-container {
+  height: 60vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-container h2 {
+  margin-top: 50%;
 }

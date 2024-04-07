@@ -1,35 +1,66 @@
-<div id="main-container">
-    <div class="main-head">Users</div>
-    <p-table 
-        [value]="users" 
-        (sortFunction)="customSort($event)" 
-        [customSort]="true" 
-        [tableStyle]="{'min-width': '60rem'}"
-        [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }" currentPageReportTemplate="Showing {first} to {last} of {totalRecords}entries"
-        [rowsPerPageOptions]="[5, 10, 20]"
+<div class="card">
+  <div *ngIf="!errorMessage">
+    <p-table
+      class="table-comp"
+      #dt
+      [value]="users"
+      [rows]="10"
+      [paginator]="true"
+      [globalFilterFields]="['username', 'mid', 'date', 'description']"
+      [tableStyle]="{ 'min-width': '75rem' }"
+      [(selection)]="selectedUsers"
+      [rowHover]="true"
+      dataKey="id"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [showCurrentPageReport]="true"
+    >
+      <ng-template pTemplate="caption">
+        <div
+          class="flex align-items-center justify-content-between"
+          id="search-comp"
         >
-        <ng-template pTemplate="header">
+          <span class="p-input-icon-left">
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal($event.target.value, 'contains')"
+              placeholder="Search..."
+            />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
         <tr>
-            <th pSortableColumn="date" style="width:20%">Date<p-sortIcon field="date_time"></p-sortIcon></th>
-            <th pSortableColumn="created_at" style="width:20%">Created At<p-sortIcon field="created_at"></p-sortIcon></th>
-            <th pSortableColumn="uid" style="width:20%">UID<p-sortIcon field="uid"></p-sortIcon></th>
-            <th pSortableColumn="username" style="width:20%">Username<p-sortIcon field="username"></p-sortIcon></th>
-            <th pSortableColumn="role" style="width:20%">Role<p-sortIcon field="role"></p-sortIcon></th>
-            <th pSortableColumn="search_count" style="width:20%">Search Counts<p-sortIcon field="search_count"></p-sortIcon></th>
-            <th pSortableColumn="ban_status" style="width:20%">Ban Status<p-sortIcon field="ban_status"></p-sortIcon></th>
+          <th pSortableColumn="date" style="width: 20%">
+            Date<p-sortIcon field="date_time"></p-sortIcon>
+          </th>
+          <th pSortableColumn="username" style="width: 20%">
+            Username<p-sortIcon field="username"></p-sortIcon>
+          </th>
+          <th pSortableColumn="mid" style="width: 20%">
+            MID<p-sortIcon field="mid"></p-sortIcon>
+          </th>
+          <th pSortableColumn="description" style="width: 20%">
+            Description<p-sortIcon field="description"></p-sortIcon>
+          </th>
         </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-user>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
         <tr>
-            <td>{{user.date_time}}</td>
-            <td>{{user.created_at}}</td>
-            <td>{{user.uid}}</td>
-            <td>{{user.username}}</td>
-            <td>{{user.role}}</td>
-            <td>{{user.search_count}}</td>
-            <td>{{user.ban_status}}</td>
+          <td>{{ user.date_time }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.mid }}</td>
+          <td>{{ user.description }}</td>
         </tr>
-    </ng-template>
-</p-table>
-
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          In total there are {{ users ? users.length : 0 }} users.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="error-container" *ngIf="errorMessage">
+    <h2>{{ errorMessage }}</h2>
+  </div>
 </div>

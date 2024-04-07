@@ -1,0 +1,24 @@
+@import "primeicons/primeicons.css";
+
+.main-head h1 {
+  width: fit-content;
+  margin: auto;
+  justify-content: center;
+}
+
+.card {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  padding: 4%;
+}
+
+.detail-comp {
+  background-color: rgb(27, 27, 27);
+  color: white;
+  border: 2px solid rgb(177, 177, 177);
+}

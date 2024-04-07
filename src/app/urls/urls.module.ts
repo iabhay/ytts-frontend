@@ -1,37 +1,41 @@
 import { RouterModule, Routes } from '@angular/router';
-import { MessagesComponent } from './messages.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { SharedModule } from '../shared/shared.module';
-import { UserMessageComponent } from './user-message/user-message.component';
 import { loginGuard } from '../guards/login.guard';
 import { DialogModule } from 'primeng/dialog';
 import { adminGuard } from '../guards/admin.guard';
+import { UrlsComponent } from './urls.component';
+import { UrlComponent } from './url-component/url-component.component';
+import { OverlayModule } from 'primeng/overlay';
+import { ButtonModule } from 'primeng/button';
 
-const messageRoutes: Routes = [
+const urlRoutes: Routes = [
   {
-    path: 'admin/manage-messages',
+    path: 'admin/manage-urls',
     canActivate: [loginGuard, adminGuard],
-    component: MessagesComponent,
+    component: UrlsComponent,
   },
 ];
 
 @NgModule({
-  declarations: [MessagesComponent, UserMessageComponent],
+  declarations: [UrlsComponent, UrlComponent],
   providers: [],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(messageRoutes),
+    RouterModule.forChild(urlRoutes),
     SharedModule,
     TableModule,
     HttpClientModule,
-    DialogModule
+    DialogModule,
+    ButtonModule,
+    OverlayModule
   ],
-  exports: [RouterModule, UserMessageComponent, TableModule, DialogModule],
+  exports: [RouterModule, UrlComponent, TableModule, DialogModule],
 })
-export class MessagesModule {}
+export class UrlsModule {}

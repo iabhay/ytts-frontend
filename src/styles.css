@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import "primeicons/primeicons.css";
-html, body { height: 100vh; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100vh;
+}
+body {
+  margin: 0;
+  font-family: "philosopher", Roboto, "Helvetica Neue", sans-serif;
+  background-color: rgb(27, 27, 27);
+  color: white;
+}

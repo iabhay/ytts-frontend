@@ -1,42 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/" id="website-logo">
-         Transcripto
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/features">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin">Admin</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/profile">About Me</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/">Contact Us</a>
-        </li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav-style">
+  <a class="navbar-brand" routerLink="/" id="website-logo"> Transcripto </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/features">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin">Admin</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/profile">About Me</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Contact Us</a>
+      </li>
     </ul>
     <ul class="navbar-nav ms-md-auto">
-        <li class="nav-item" *ngIf="!isLoggedIn">
-            <a id="authBtn" class="nav-link" routerLink="/auth">
-              <span #loginStatus>Login</span>
-                <img src="../../assets/profile-view/profile-view-icon.png" width="45px" height="40px">
-            </a>
-            </li>
-            <li class="nav-item" *ngIf="isLoggedIn">
-            <a id="authBtn" class="nav-link" (click)="logoutMe()">
-              <span #loginStatus>Logout</span>
-                <img src="../../assets/profile-view/profile-view-icon.png" width="45px" height="40px">
-            </a>
-        </li>
+      <li class="nav-item" *ngIf="!isLoggedIn">
+        <a id="authBtn" class="nav-link" routerLink="/auth">
+          <span #loginStatus>Login</span>
+          <img
+            src="../../assets/profile-view/profile-view-icon.png"
+            width="45px"
+            height="40px"
+          />
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a id="authBtn" class="nav-link" (click)="logoutMe()">
+          <span #loginStatus>Logout</span>
+          <img
+            src="../../assets/profile-view/profile-view-icon.png"
+            width="45px"
+            height="40px"
+          />
+        </a>
+      </li>
     </ul>
-    </div>
-    
+  </div>
 </nav>
