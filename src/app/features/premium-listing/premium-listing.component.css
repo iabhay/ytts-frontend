@@ -33,6 +33,7 @@
   ::ng-deep .add-btn {
     color: rgb(0, 0, 0);
     background-color: rgb(255, 255, 255);
+
   }
   ::ng-deep .overlay-btn {
     background: linear-gradient(to right bottom, rgb(80, 80, 80), rgb(0, 2, 4));

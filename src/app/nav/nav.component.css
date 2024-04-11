@@ -1,14 +1,19 @@
+.navbar {
+  border-bottom: 2px solid rgb(1, 159, 250);
+  width: 100vw;
+}
 .nav-link {
   font-size: large;
-  color: #1a1a1a;
+  color: #ffffff;
 }
 .nav-link:hover,
 .nav-link:focus {
   opacity: 0.75;
+  text-decoration: underline;
 }
 
 .btn {
-  background-color: #1a1a1a;
+  background-color: #ffffff;
   border-radius: 4px;
   color: #ffffff;
   cursor: pointer;
@@ -28,7 +33,8 @@
 #website-logo {
   margin-left: 2%;
   font-family: "philosopher";
-  font-size: 32px;
+  /* font-size: 31px; */
+  font-size: 1.2em;
   font-optical-sizing: auto;
   font-weight: bold;
   font-style: normal;
@@ -37,13 +43,22 @@
 
 #authBtn {
   text-decoration: none;
-  background-color: #1a1a1a;
-  color: rgb(237, 230, 225);
-  border-radius: 10px;
-  margin-right: 20px;
+  /* background-color: rgb(0, 162, 255); */
+  /* background-color: rgb(255, 255, 255); */
+  color: rgb(255, 255, 255);
+  margin-right: 50px;
+  width: fit-content;
+  /* border: 3px solid black;
+  border-radius: 15px; */
+  padding: 3px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 #authBtn span {
   font-size: 1.2em;
-  margin-right: 0.7em;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
 }
+

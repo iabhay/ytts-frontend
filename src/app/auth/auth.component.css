@@ -1,32 +1,44 @@
 .main-container {
-  height: 100vh;
   display: flex;
   flex-direction: row;
+  width: fit-content;
+  height: fit-content;
 }
 
 .left-container {
   height: 100vh;
-  background-color: rgb(102, 107, 111);
+  background-color: rgb(33, 37, 41);
   width: 20%;
   display: flex;
   flex-direction: column;
 }
 
 .img-container {
-  margin: auto;
+  margin-top: 40%;
   margin-left: auto;
+  margin-right: auto;
   padding: 5%;
+  align-items: center;
+  text-align: center;
+}
+
+.img-container img{
+  margin-bottom: 20%;
+}
+
+.img-container p{
+  font-size: larger;
 }
 
 .main-head {
-  margin: auto;
-  width: fit-content;
   padding-bottom: 10px;
   font-style: bold;
   font-size: 3em;
 }
 
 #primary-container {
+  align-items: center;
+  text-align: center;
   margin: auto;
   width: 50%;
 }
@@ -36,6 +48,7 @@
   color: white;
   padding: 5%;
   border-radius: 20px;
+  text-align: left;
 }
 
 #submitDiv {
