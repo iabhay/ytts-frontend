@@ -1,17 +1,20 @@
 <div class="main-container" *ngIf="!loggedIn">
   <div class="left-container">
     <div class="img-container">
-      <img src="../../assets/logos/logo-no-background.png" width="80%" />
+      <img src="../../assets/logos/logo-white-tp-alter.png" width="80%" />
+      <hr />
       <p>Best Tool to generate Transcript from youTube video.</p>
     </div>
   </div>
-  <div class="container col-lg-12" id="primary-container">
-    <h2 class="main-head">{{ isLoginMode ? "Login" : "Signup" }}</h2>
-    <div class="row col-xs-6 block2 center my-3" id="secondary-container">
-      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-        <div class="form-group mb-3">
-          <label for="username" class="mb-2">Username</label>
-          <input
+  <div class="right-container">
+
+    <div id="primary-container">
+      <h2 class="main-head">{{ isLoginMode ? "Login" : "Signup" }}</h2>
+      <div class="row col-xs-6 block2 center my-3" id="secondary-container">
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+          <div class="form-group mb-3">
+            <label for="username" class="mb-2">Username</label>
+            <input
             placeholder="UsernameHere"
             type="text"
             id="username"
@@ -25,47 +28,45 @@
         <div class="form-group mb-3">
           <label for="password" class="mb-2">Password</label>
           <input
-            placeholder="******"
-            type="password"
-            id="password"
-            class="form-control"
-            ngModel
-            name="password"
-            required
-            minlength="6"
-            autocomplete="on"
+          placeholder="******"
+          type="password"
+          id="password"
+          class="form-control"
+          ngModel
+          name="password"
+          required
+          minlength="6"
+          autocomplete="on"
           />
         </div>
         <div class="my-4" id="submitDiv">
           <div id="#submitBtn">
             <button
-              class="btn btn-secondary"
-              type="submit"
-              [disabled]="!authForm.valid"
-              (click)="(onSubmit)"
+            class="btn btn-secondary"
+            type="submit"
+            [disabled]="!authForm.valid"
+            (click)="(onSubmit)"
             >
-              {{ isLoginMode ? "Login" : "Sign Up" }}
-              <div
-                id="submitLoad"
-                class="spinner-border text-light spinner-border-sm"
+            {{ isLoginMode ? "Login" : "Sign Up" }}
+            <div
+            id="submitLoad"
+            class="spinner-border text-light spinner-border-sm"
                 role="status"
                 *ngIf="showSpinner"
               ></div>
             </button>
           </div>
           <button
-            class="btn btn-secondary"
-            (click)="onSwitchMode()"
-            type="button"
-            id="submitSwitch"
+          class="btn btn-secondary"
+          (click)="onSwitchMode()"
+          type="button"
+          id="submitSwitch"
           >
-            Switch to {{ isLoginMode ? "Signup" : "Login" }}
+          Switch to {{ isLoginMode ? "Signup" : "Login" }}
           </button>
         </div>
       </form>
     </div>
   </div>
 </div>
-<div *ngIf="loggedIn">
-  <h1>Login Again..</h1>
 </div>

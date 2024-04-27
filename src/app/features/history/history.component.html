@@ -1,10 +1,10 @@
 <div id="main-container">
   <h1>History</h1>
-  <div *ngIf="!errorMessage">
+  <div *ngIf="!errorMessage" class="table-view">
     <p-table
       [value]="history"
       [customSort]="true"
-      [tableStyle]="{ width: '80rem' }"
+      [tableStyle]="{ width: '80vw' }"
       [paginator]="true"
       [rows]="10"
       [showCurrentPageReport]="true"

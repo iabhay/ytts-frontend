@@ -3,9 +3,9 @@
     <img
       class="main-img"
       src="/assets/logos/logo-white-tp-alter.png"
-      width="50%"
+      width="400px"
     />
-    <hr style="background-color:rgb(1, 159, 250); height: 2px; width: 95%; margin-top: 7%; opacity: 0.7;"/>
+    <hr style="background-color:rgb(250, 1, 1); border:1px solid rgb(250, 1, 1); height: 2px; width: 50%; margin-top: 2%; opacity: 0.7;"/>
     <p>You can generate transcript for the video link you provided.</p>
   </div>
   <div class="main-input">
@@ -21,22 +21,16 @@
       </button>
     </div>
   </div>
-  <div class="res" *ngIf="summary">
-    <hr />
-    <div class="resContainer">
-      <h1>Summary</h1>
-      <p>{{ summary.summary }}</p>
-    </div>
-    <div class="resContainer">
-      <h1>Transcript</h1>
-      <p>{{ summary.transcript }}</p>
-    </div>
+  <div class="res" *ngIf="summary; else errorContainer">
+    <app-summary-output summary="{{summary.summary}}" transcript="{{summary.transcript}}"></app-summary-output>
   </div>
-  <div class="res" *ngIf="errorRes">
-    <hr />
-    <div class="resContainer">
-      <h1>Oops!</h1>
-      <p>{{ errorRes }}</p>
+  <ng-template #errorContainer>
+    <div *ngIf="errorRes" class="res">
+      <div class="resContainer">
+        <h1>Oops!</h1>
+        <p>{{ errorRes }}</p>
+      </div>
     </div>
-  </div>
+  </ng-template>
 </div>
+  

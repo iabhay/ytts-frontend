@@ -20,6 +20,8 @@ import { MessageService, PrimeIcons } from 'primeng/api';
 import { ProfileInterceptor } from './profile/profile-interceptor.service';
 import { AdminModule } from './admin/admin.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ScrollPanelModule } from 'primeng/scrollpanel'; 
+import { SummaryOutputComponent } from './transcript/summary-output/summary-output.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     TranscriptComponent,
     AuthComponent,
     RoleComponent,
+    SummaryOutputComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ProfileModule,
     ToastModule,
     AdminModule,
+    ScrollPanelModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ProfileInterceptor, multi: true },

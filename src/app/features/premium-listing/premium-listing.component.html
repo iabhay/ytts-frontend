@@ -1,6 +1,6 @@
 <div id="main-container">
   <h1>Premium Listings</h1>
-  <div class="add-pl">
+  <div *ngIf="!errorMessage" class="add-pl">
     <p-button
     styleClass="add-btn"
     label="Add"
@@ -33,11 +33,11 @@
         </form>
       </p-overlay>
     </div>
-    <div *ngIf="!errorMessage">
+    <div *ngIf="!errorMessage" class="table-view">
     <p-table
       [value]="premiumlists"
       [customSort]="true"
-      [tableStyle]="{ width: '70rem' }"
+      [tableStyle]="{ width: '80vw' }"
       [paginator]="true"
       [rows]="10"
       [showCurrentPageReport]="true"

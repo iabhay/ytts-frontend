@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile.component';
 import { RoleComponent } from './role-change/role.component';
 import { loginGuard } from '../guards/login.guard';
+import { OverlayModule } from 'primeng/overlay';
 
 const profileRoutes: Routes = [
   {
@@ -24,6 +25,7 @@ const profileRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(profileRoutes),
     SharedModule,
+    OverlayModule
   ],
   exports: [RouterModule],
   providers: [],

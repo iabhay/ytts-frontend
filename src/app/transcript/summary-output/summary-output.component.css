@@ -1,0 +1,38 @@
+.contain{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-items: stretch;
+    justify-content: space-evenly;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 2%;
+}
+.titles{
+    background-color: grey;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+    display: flex;
+}
+
+.output-heading{
+    margin-left: 5px;
+}
+
+.words{
+    margin-left: auto;
+}
+
+
+.summary-container{
+    border: 2px solid grey;
+    color: white;
+    width: 60%;
+}
+
+.transcript-container{
+    border: 2px solid grey;
+    color: white;
+    width: 60%;
+}

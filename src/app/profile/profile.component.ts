@@ -5,6 +5,7 @@ import { RoleChangeService } from './role-change/role-change.service';
 import { ProfileService } from './profile.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
   };
   roleSub: Subscription;
   profileSub: Subscription;
+  overlayVisible: boolean = false;
   openerCmp;
 
   constructor(
@@ -41,24 +43,79 @@ export class ProfileComponent implements OnInit {
       error: (error) => {
         this.msgService.add({
           severity: 'danger',
-          summary: 'Error',
-          detail: 'Some Error Occurred!',
+          summary: 'Not-LoggedIn',
+          detail: 'Login!',
         });
       },
     });
-    // this.roleChange.upgradeRole();
   }
 
   updateRole() {
-    this.router.navigate(['role-change']);
-    // const title = 'Are you sure?';
-    // const description = 'This will charge you Rs. 59/Month';
-    // const actionText = 'Proceed';
-    // const routeTarget = 'role-change';
-    // this.cardOpener(title,description,actionText, routeTarget);
+    if(this.user.role === "premiumuser"){
+      this.profileService.updateRole("downgrade").subscribe({
+        next: res => {
+          this.msgService.add({
+            severity: 'success',
+            summary: 'You are Downgraded!',
+            detail: 'Downgraded!',
+          });
+          window.location.reload();
+        },
+        error: err => {
+          this.msgService.add({
+            severity: 'danger',
+            summary: 'Not-LoggedIn',
+            detail: 'Login!',
+          });
+        }
+      })
+    }
+    else if(this.user.role === "nonpremiumuser"){
+      this.profileService.updateRole("upgrade").subscribe({
+        next: res => {
+          this.msgService.add({
+            severity: 'success',
+            summary: 'You are Upgraded!',
+            detail: 'Upgraded!',
+          });
+          window.location.reload();
+        },
+        error: err => {
+          this.msgService.add({
+            severity: 'danger',
+            summary: 'Not-LoggedIn',
+            detail: 'Login!',
+          });
+        }
+      })
+    }
   }
 
-  sendMessage() {}
+  sendMessage(form: NgForm) {
+    if(form.valid){
+      const user_message = form.value.inp_message;
+      this.profileService.sendMessage(user_message).subscribe({
+       next: res => {
+        this.msgService.add({
+          severity: 'success',
+          summary: 'Your message sent to Admin!',
+          detail: 'Sent!',
+        });
+       },
+       error: err => {
+        this.msgService.add({
+          severity: 'danger',
+          summary: 'Some Error Occured!',
+          detail: 'Try Again Later!',
+        });
+       }
+      })
+    }
+  }
+  
+  addMessage(){
+    this.overlayVisible = !this.overlayVisible;
+  }
 
   cardOpener(
     title: string,

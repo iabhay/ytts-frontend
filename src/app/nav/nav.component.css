@@ -1,5 +1,6 @@
 .navbar {
-  border-bottom: 2px solid rgb(1, 159, 250);
+  /* border-bottom: 2px solid rgb(1, 159, 250); */
+  border-bottom: 2px solid rgb(250, 1, 1);
   width: 100vw;
 }
 .nav-link {

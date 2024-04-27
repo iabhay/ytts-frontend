@@ -1,0 +1,24 @@
+<div class="contain">
+    <div class="summary-container">
+        <div class="titles">
+            <h2 class="output-heading">Summary</h2>
+            <h4 class="words">Words: {{summary.length}}</h4>
+        </div>
+        <p-scrollPanel [style]="{ width: '100%', height: '200px'}" styleClass="custombar1">
+            <p>
+                {{summary}}
+            </p>
+        </p-scrollPanel>
+    </div>
+    <div class="transcript-container">
+        <div class="titles">
+            <h2 class="output-heading">Transcript</h2>
+            <h4 class="words">Words: {{transcript.length}}</h4>
+        </div>
+        <p-scrollPanel [style]="{ width: '100%', height: '200px'}" styleClass="custombar2">
+            <p>
+                {{transcript}}
+            </p>
+        </p-scrollPanel>
+    </div>
+</div>

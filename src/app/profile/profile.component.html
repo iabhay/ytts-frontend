@@ -1,4 +1,4 @@
-<section class="vh-100" >
+<section style="min-height: 100vh;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-6 mb-4 mb-lg-0">
@@ -58,22 +58,46 @@
                   <div class="col-6 mb-3">
                     <h6>
                       {{
-                        user.role.includes("premium")
-                          ? "Get Premium"
-                          : "Cancel Premium"
+                        user.role === "premiumuser"
+                          ? "Cancel Premium"
+                          : "Get Premium"
                       }}
                     </h6>
                     <button class="upgrade-btn" (click)="updateRole()">
                       {{
-                        user.role.includes("premium") ? "Downgrade" : "Upgrade"
+                        user.role === "premiumuser" ? "Downgrade" : "Upgrade"
                       }}
                     </button>
                   </div>
                   <div class="col-6 mb-3">
                     <h6>Message Admin</h6>
-                    <button class="upgrade-btn" (click)="sendMessage()">
+                    <button class="upgrade-btn" (click)="addMessage()">
                       Send Message
                     </button>
+                    <p-overlay [(visible)]="overlayVisible" styleClass="overlay-btn">
+                      <form #inpForm="ngForm" (ngSubmit)="sendMessage(inpForm)">
+                        <div class="form-group">
+                          <label class="overlay-fields" style="font-size: large" for="inp_url"
+                            >Enter Message:
+                          </label>
+                          <input
+                          class="overlay-fields form-control"
+                            id="inp_message"
+                            ngModel
+                            name="inp_message"
+                            placeholder="Enter Message for admin"
+                            />
+                            <button
+                            class="overlay-fields"
+                            [disabled]="!inpForm.valid"
+                            type="submit"
+                            (click)="(addPremiumlist)"
+                            >
+                            Submit
+                          </button>
+                        </div>
+                      </form>
+                    </p-overlay>
                   </div>
                 </div>
                 <div class="d-flex justify-content-start">

@@ -4,6 +4,7 @@
     #dt
     [value]="users"
     [rows]="10"
+    [columns]="8"
     [paginator]="true"
     [globalFilterFields]="[
       'username',
@@ -12,7 +13,7 @@
       'ban_status',
       'role'
     ]"
-    [tableStyle]="{ 'min-width': '75rem' }"
+    [tableStyle]="{ 'min-width': '90rem' }"
     [(selection)]="selectedUsers"
     [rowHover]="true"
     dataKey="id"
@@ -51,13 +52,13 @@
         <th pSortableColumn="role" style="width: 20%">
           Role<p-sortIcon field="role"></p-sortIcon>
         </th>
-        <th pSortableColumn="search_count" style="width: 20%">
+        <th pSortableColumn="search_count" style="width: 30%">
           Search Counts<p-sortIcon field="search_count"></p-sortIcon>
         </th>
-        <th pSortableColumn="ban_status" style="width: 20%">
+        <th pSortableColumn="ban_status" style="width: 30%">
           Ban Status<p-sortIcon field="ban_status"></p-sortIcon>
         </th>
-        <th>Manage</th>
+        <th style="width: 50%;">Manage</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user>

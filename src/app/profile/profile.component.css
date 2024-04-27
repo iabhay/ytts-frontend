@@ -17,3 +17,24 @@
   border-color: rgb(233, 57, 57);
   border-radius: 10px;
 }
+
+:host {
+  ::ng-deep .overlay-btn {
+    background-color: #000000d1;
+    color: white;
+    width: 70%;
+    height: 30%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    left: 0;
+  }
+  ::ng-deep .overlay-fields{
+    width: 88%;
+    margin: 2%;
+    margin-left: 0;
+  }
+}

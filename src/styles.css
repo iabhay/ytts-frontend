@@ -2,16 +2,9 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import "primeicons/primeicons.css";
-html,
-body {
-  height: calc(100vh + max-content);
-  width: calc(100vw + max-content);
-}
-body {
-  margin: 0;
+
+html, body {
   font-family: "philosopher", Roboto, "Helvetica Neue", sans-serif;
-  /* background-color: rgb(27, 27, 27); */
-  /* background-color: rgb(0, 0, 0); */
   background: linear-gradient(#000000 , #2D3436);
   color: rgb(255, 255, 255);
 }

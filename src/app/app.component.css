@@ -1,7 +1,10 @@
 #toast {
-  color: black;
+  /* color: black; */
 }
 
+.main{
+  /* height: 100dvh; */
+}
 :host ::ng-deep p-toast {
-  background-color: black;
+  /* background-color: black; */
 }

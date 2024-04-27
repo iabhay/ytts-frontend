@@ -1,12 +1,10 @@
 .main-container {
   display: flex;
   flex-direction: row;
-  width: fit-content;
-  height: fit-content;
+  min-height: 100vh;
 }
 
 .left-container {
-  height: 100vh;
   background-color: rgb(33, 37, 41);
   width: 20%;
   display: flex;
@@ -14,16 +12,14 @@
 }
 
 .img-container {
-  margin-top: 40%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5%;
+  margin: auto;
+  padding: 10px;
   align-items: center;
   text-align: center;
 }
 
 .img-container img{
-  margin-bottom: 20%;
+  margin-bottom: 15px;
 }
 
 .img-container p{
@@ -34,6 +30,12 @@
   padding-bottom: 10px;
   font-style: bold;
   font-size: 3em;
+}
+
+.right-container{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
 }
 
 #primary-container {
@@ -59,10 +61,6 @@
 #submitBtn {
   display: flex;
 }
-
-/* #submitLoad{
-    
-} */
 
 #submitSwitch {
   margin-left: 10%;

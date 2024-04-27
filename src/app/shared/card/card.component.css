@@ -1,5 +1,5 @@
 .card{
     background: linear-gradient(to right bottom, rgb(80, 80, 80), rgb(0, 2, 4));
     color: white;
-    width: calc(40vw);
+    width: calc(45vw);
 }
