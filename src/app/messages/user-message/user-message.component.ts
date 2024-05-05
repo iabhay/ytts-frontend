@@ -16,7 +16,6 @@ interface Statuses {
 })
 export class UserMessageComponent implements OnInit {
   users;
-  openerCmp;
   counter = 0;
   newCounter;
   user;

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav-style">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark " id="nav-style" style="background-color: rgb(20, 20, 20);">
   <a class="navbar-brand" routerLink="/" id="website-logo"> Transcripto </a>
   <button
     class="navbar-toggler"
@@ -25,9 +25,6 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/profile">About Me</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/">Contact Us</a>
-      </li>
     </ul>
     <ul class="navbar-nav ms-md-auto">
       <li class="nav-item" *ngIf="!isLoggedIn">
@@ -43,6 +40,12 @@
       <li class="nav-item" *ngIf="isLoggedIn">
         <a id="authBtn" class="nav-link" (click)="logoutMe()">
           <span #loginStatus>Logout</span>
+          <div
+            id="submitLoad"
+            class="spinner-border text-light spinner-border-sm"
+                role="status"
+                *ngIf="showSpinner"
+              ></div>
           <img
             src="../../assets/profile-view/profile-view-icon.png"
             width="45px"

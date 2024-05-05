@@ -10,14 +10,22 @@
   </div>
   <div class="main-input">
     <div class="inp-here">
-      <input
+        <input
         class="main-inp"
         type="text"
         placeholder="Enter your link"
         #transcript
-      />
-      <button class="btn" id="btn-gen" type="button" (click)="onSubmit()">
+        id="youtube_inp"
+        name="youtube_inp"
+        />
+      <button class="btn" id="btn-gen" type="button" (click)="onSubmit(transcript)">
         Generate
+        <div
+            id="submitLoad"
+            class="spinner-border text-dark spinner-border-sm"
+                role="status"
+                *ngIf="showSpinner"
+              ></div>
       </button>
     </div>
   </div>

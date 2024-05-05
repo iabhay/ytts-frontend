@@ -19,7 +19,6 @@ interface Statuses {
 })
 export class UserComponent implements OnInit {
   users;
-  openerCmp;
   counter = 0;
   newCounter;
   user;

@@ -13,7 +13,7 @@ import { OverlayModule } from 'primeng/overlay';
 
 const featureRoutes: Routes = [
   {
-    path: 'features',
+    path: '',
     canActivate: [loginGuard],
     component: FeaturesComponent,
     children: [

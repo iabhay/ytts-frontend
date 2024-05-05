@@ -17,6 +17,7 @@ import { MessageService } from 'primeng/api';
   styleUrl: './nav.component.css',
 })
 export class NavComponent implements OnInit, OnDestroy {
+  showSpinner = false;
   isLoggedIn = false;
 
   constructor(
@@ -31,14 +32,28 @@ export class NavComponent implements OnInit, OnDestroy {
     });
   }
   logoutMe() {
-    this.authService.logout().subscribe((res) => {
-      this.isLoggedIn = false;
+    this.showSpinner = true;
+    this.authService.logout().subscribe({
+      next: (res) => {
+        this.isLoggedIn = false;
+        this.msgService.add({
+          severity: 'Success',
+          summary: 'Logout Successfull!',
+          detail: 'Successfully logged out!',
+        });
+        this.router.navigate(['auth']);
+      },
+    error:() => {
       this.msgService.add({
-        severity: 'Success',
-        summary: 'Logout Successfull!',
-        detail: 'Successfully logged out!',
+        severity: 'Danger',
+        summary: 'Some Problem While Logging Out!',
+        detail: 'Login again!',
       });
       this.router.navigate(['auth']);
+    },
+    complete: () => {
+      this.showSpinner = false;
+    }
     });
   }
 

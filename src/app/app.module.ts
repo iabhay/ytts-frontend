@@ -13,7 +13,6 @@ import { ButtonModule } from 'primeng/button';
 import { FeatureModule } from './features/features-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { TableModule } from 'primeng/table';
-import { RoleComponent } from './profile/role-change/role.component';
 import { ProfileModule } from './profile/profile.module';
 import { ToastModule } from 'primeng/toast';
 import { MessageService, PrimeIcons } from 'primeng/api';
@@ -29,7 +28,6 @@ import { SummaryOutputComponent } from './transcript/summary-output/summary-outp
     NavComponent,
     TranscriptComponent,
     AuthComponent,
-    RoleComponent,
     SummaryOutputComponent
   ],
   imports: [
@@ -37,7 +35,7 @@ import { SummaryOutputComponent } from './transcript/summary-output/summary-outp
     BrowserAnimationsModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule,
+    // ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     ButtonModule,

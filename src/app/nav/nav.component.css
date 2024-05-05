@@ -1,7 +1,7 @@
 .navbar {
   /* border-bottom: 2px solid rgb(1, 159, 250); */
   border-bottom: 2px solid rgb(250, 1, 1);
-  width: 100vw;
+  min-width: 100vw;
 }
 .nav-link {
   font-size: large;
@@ -61,5 +61,10 @@
   font-size: 1.2em;
   margin-left: 0.2em;
   margin-right: 0.2em;
+}
+:host{
+  ::ng-deep #nav-style{
+    background-color: aqua;
+  } 
 }
 

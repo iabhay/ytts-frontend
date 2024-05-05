@@ -2,12 +2,10 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  Output,
-  ViewContainerRef,
+  Output
 } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { OpenerComponent } from '../shared/openers/opener.component';
 import { MessageService } from 'primeng/api';
 import { SpinnerIcon } from 'primeng/icons/spinner';
 import { Router } from '@angular/router';
@@ -21,7 +19,6 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 export class AuthComponent implements OnInit {
   constructor(
     private authService: AuthService,
-    private vcr: ViewContainerRef,
     private msgService: MessageService,
     private router: Router
   ) {}
@@ -69,14 +66,6 @@ export class AuthComponent implements OnInit {
             'Signup Successful',
             'Authentication Successful'
           );
-          this.loginPrompt = this.vcr.createComponent(OpenerComponent);
-          this.loginPrompt.instance.title = 'Login Now';
-          this.loginPrompt.instance.description = 'Login Required!';
-          this.loginPrompt.instance.close.subscribe(() => {
-            this.router.navigateByUrl('/auth');
-            this.vcr.clear();
-            this.loginSub.unsubscribe();
-          });
         },
         error: (error) => {
           this.loginSub.unsubscribe();

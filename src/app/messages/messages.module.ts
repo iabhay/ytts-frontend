@@ -8,7 +8,6 @@ import { TableModule } from 'primeng/table';
 import { SharedModule } from '../shared/shared.module';
 import { UserMessageComponent } from './user-message/user-message.component';
 import { loginGuard } from '../guards/login.guard';
-import { DialogModule } from 'primeng/dialog';
 import { adminGuard } from '../guards/admin.guard';
 
 const messageRoutes: Routes = [
@@ -24,14 +23,11 @@ const messageRoutes: Routes = [
   providers: [],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     RouterModule.forChild(messageRoutes),
     SharedModule,
     TableModule,
     HttpClientModule,
-    DialogModule
   ],
-  exports: [RouterModule, UserMessageComponent, TableModule, DialogModule],
+  exports: [],
 })
 export class MessagesModule {}

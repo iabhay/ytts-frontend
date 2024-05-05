@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { OpenerComponent } from '../shared/openers/opener.component';
 import { Subscription } from 'rxjs';
-import { RoleChangeService } from './role-change/role-change.service';
 import { ProfileService } from './profile.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
@@ -25,11 +23,7 @@ export class ProfileComponent implements OnInit {
   roleSub: Subscription;
   profileSub: Subscription;
   overlayVisible: boolean = false;
-  openerCmp;
-
   constructor(
-    private vcr: ViewContainerRef,
-    private roleChange: RoleChangeService,
     private profileService: ProfileService,
     private msgService: MessageService,
     private router: Router
@@ -115,23 +109,5 @@ export class ProfileComponent implements OnInit {
   
   addMessage(){
     this.overlayVisible = !this.overlayVisible;
-  }
-
-  cardOpener(
-    title: string,
-    description: string,
-    actionText: string,
-    routeTarget: string
-  ) {
-    this.openerCmp = this.vcr.createComponent(OpenerComponent);
-    this.openerCmp.instance.title = title;
-    this.openerCmp.instance.description = description;
-    this.openerCmp.instance.actionText = actionText;
-    this.openerCmp.instance.routeTarget = routeTarget;
-
-    this.openerCmp.instance.close.subscribe(() => {
-      this.vcr.clear();
-      this.roleSub.unsubscribe();
-    });
   }
 }

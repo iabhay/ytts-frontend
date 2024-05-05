@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { TranscriptService } from './transcript.service';
 
 @Component({
@@ -7,22 +7,33 @@ import { TranscriptService } from './transcript.service';
   styleUrl: './transcript.component.css',
 })
 export class TranscriptComponent {
-  @ViewChild('transcript') url_inp;
-
+  showSpinner = false;
   summary;
   errorRes;
 
   constructor(private transcriptService: TranscriptService) {}
 
-  onSubmit() {
-    const youtube_url = this.url_inp.nativeElement.value;
-    this.transcriptService.fetchSummary(youtube_url).subscribe({
-      next: (res) => {
-        this.summary = res;
-      },
-      error: (err) => {
-        this.errorRes = err;
-      },
-    });
+  onSubmit(youtube_input) {
+    this.showSpinner = true;
+    const youtube_url = youtube_input.value;
+    // const pattern="(https:\/\/)?(www.)?youtube.(com)\/watch\?v=[a-zA-Z0-9\-\_]{11}";
+    // if(!pattern.match(youtube_url)){
+    //   this.errorRes = "Please Input Valid Youtube Url!";
+    //   this.showSpinner = false;
+    // }
+    // else{
+      this.transcriptService.fetchSummary(youtube_url).subscribe({
+        next: (res) => {
+          this.summary = res;
+        },
+        error: (err) => {
+          this.errorRes = err;
+          this.showSpinner = false;
+        },
+        complete: () => {
+          this.showSpinner = false;
+        }
+      });
+    // }
   }
 }

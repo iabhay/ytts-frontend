@@ -36,6 +36,6 @@ const urlRoutes: Routes = [
     ButtonModule,
     OverlayModule
   ],
-  exports: [RouterModule, UrlComponent, TableModule, DialogModule],
+  exports: []
 })
 export class UrlsModule {}
