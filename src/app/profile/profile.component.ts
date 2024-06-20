@@ -87,7 +87,9 @@ export class ProfileComponent implements OnInit {
 
   sendMessage(form: NgForm) {
     if(form.valid){
-      const user_message = form.value.inp_message;
+      const user_message = {
+        "description": form.value.inp_message
+      }
       this.profileService.sendMessage(user_message).subscribe({
        next: res => {
         this.msgService.add({
@@ -106,7 +108,7 @@ export class ProfileComponent implements OnInit {
       })
     }
   }
-  
+
   addMessage(){
     this.overlayVisible = !this.overlayVisible;
   }

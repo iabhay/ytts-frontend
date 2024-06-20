@@ -22,7 +22,7 @@ export class UserService {
       youtube_url: url_inp,
     };
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/premiumlist';
+      'http://127.0.0.1:5000/premiumlist';
     return this.http
       .post(reqUrl, data)
       .pipe(catchError((err) => this.handleError(err)));
@@ -32,7 +32,7 @@ export class UserService {
     const params = new HttpParams();
     params.append('user_id', user_id);
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/premiumlist';
+      'http://127.0.0.1:5000/premiumlist';
     return this.http
       .get(reqUrl, { params: params })
       .pipe(catchError((err) => this.handleError(err)));
@@ -40,7 +40,7 @@ export class UserService {
 
   fetchUsers() {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/users';
+      'http://127.0.0.1:5000/users';
     return this.http
       .get(reqUrl)
       .pipe(catchError((err) => this.handleError(err)));
@@ -50,7 +50,7 @@ export class UserService {
     const params = new HttpParams();
     params.append('user_id', user_id);
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/user/profile';
+      'http://127.0.0.1:5000/user/profile';
     return this.http
       .get(reqUrl, { params: params })
       .pipe(catchError((err) => this.handleError(err)));
@@ -58,7 +58,7 @@ export class UserService {
 
   upgrade_user(user_id) {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/upgrade?user_id=' +
+      'http://127.0.0.1:5000/upgrade?user_id=' +
       user_id;
     return this.http
       .put<successResponse | errorResponse>(reqUrl, {})
@@ -67,7 +67,7 @@ export class UserService {
 
   downgrade_user(user_id) {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/downgrade?user_id=' +
+      'http://127.0.0.1:5000/downgrade?user_id=' +
       user_id;
     return this.http
       .put<successResponse | errorResponse>(reqUrl, {})
@@ -76,7 +76,7 @@ export class UserService {
 
   ban_user(user_id) {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/user/ban?user_id=' +
+      'http://127.0.0.1:5000/user/ban?user_id=' +
       user_id;
     return this.http
       .put<successResponse | errorResponse>(reqUrl, {})
@@ -85,7 +85,7 @@ export class UserService {
 
   unban_user(user_id) {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/user/unban?user_id=' +
+      'http://127.0.0.1:5000/user/unban?user_id=' +
       user_id;
     return this.http
       .put<successResponse | errorResponse>(reqUrl, {}, {})
@@ -97,7 +97,7 @@ export class UserService {
       youtube_url: url_inp,
     };
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/url/ban';
+      'http://127.0.0.1:5000/url/ban';
     return this.http
       .post<errorResponse>(reqUrl, data)
       .pipe(catchError((err) => this.handleError(err)));
@@ -105,7 +105,7 @@ export class UserService {
 
   view_ban_urls() {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/urls';
+      'http://127.0.0.1:5000/urls';
     return this.http
       .get(reqUrl)
       .pipe(catchError((err) => this.handleError(err)));
@@ -116,7 +116,7 @@ export class UserService {
       youtube_url: url_inp,
     };
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/url/unban';
+      'http://127.0.0.1:5000/url/unban';
     return this.http
       .delete<errorResponse>(reqUrl, { body: data })
       .pipe(catchError((err) => this.handleError(err)));
@@ -124,7 +124,7 @@ export class UserService {
 
   fetchMessages() {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/messages';
+      'http://127.0.0.1:5000/messages';
     return this.http
       .get(reqUrl)
       .pipe(catchError((err) => this.handleError(err)));
@@ -134,7 +134,7 @@ export class UserService {
     const params = new HttpParams();
     params.append('user_id', user_id);
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/messages';
+      'http://127.0.0.1:5000/messages';
     return this.http
       .get(reqUrl)
       .pipe(catchError((err) => this.handleError(err)));
@@ -144,7 +144,7 @@ export class UserService {
     const params = new HttpParams();
     params.append('user_id', user_type);
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/messages';
+      'http://127.0.0.1:5000/messages';
     return this.http
       .get(reqUrl)
       .pipe(catchError((err) => this.handleError(err)));
@@ -155,7 +155,7 @@ export class UserService {
       description: description,
     };
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/message';
+      'http://127.0.0.1:5000/message';
     return this.http
       .post(reqUrl, data)
       .pipe(catchError((err) => this.handleError(err)));
@@ -163,7 +163,7 @@ export class UserService {
 
   fetchAllHistory() {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/history/all';
+      'http://127.0.0.1:5000/history/all';
     return this.http
       .get(reqUrl)
       .pipe(catchError((err) => this.handleError(err)));
@@ -173,7 +173,7 @@ export class UserService {
     const params = new HttpParams();
     params.append('user_id', user_id);
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/history';
+      'http://127.0.0.1:5000/history';
     return this.http
       .get(reqUrl, { params: params })
       .pipe(catchError((err) => this.handleError(err)));

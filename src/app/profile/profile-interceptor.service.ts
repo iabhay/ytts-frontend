@@ -19,10 +19,6 @@ export class ProfileInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const access_token = sessionStorage.getItem('access_token');
-    // if(!access_token){
-    //     this.router.navigate(['auth']);
-    //     return throwError(() => 'Not Logged In');  
-    // }
     const authorizedRequest = req.clone({
       headers: req.headers.append('Authorization', `Bearer ${access_token}`),
     });

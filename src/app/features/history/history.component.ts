@@ -22,7 +22,9 @@ export class HistoryComponent implements OnInit, OnDestroy {
           this.history = resHistory;
         },
         error: (err) => {
-          this.errorMessage = err;
+          console.log('here');
+          this.errorMessage = 'Video Not Supported';
+          this.history = null;
         },
       });
     } else if (this.user_id) {

@@ -17,7 +17,7 @@
                 class="img-fluid my-3"
                 style="width: 120px"
               />
-              <h5>{{ user.username }}</h5>
+              <h5>{{ user.username | uppercase}}</h5>
               <p>
                 {{
                   user.role === "premiumuser"

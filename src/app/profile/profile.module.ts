@@ -25,7 +25,7 @@ const profileRoutes: Routes = [
     OverlayModule,
     RouterModule.forChild(profileRoutes),
   ],
-  exports: [RouterModule],
+  exports: [],
   providers: [],
 })
 export class ProfileModule {}

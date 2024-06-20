@@ -8,7 +8,7 @@ export class TranscriptService {
 
   fetchSummary(youtube_url) {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/summary';
+      'http://127.0.0.1:5000/summary';
     return this.http.post(reqUrl, {
       youtube_url: youtube_url,
     });

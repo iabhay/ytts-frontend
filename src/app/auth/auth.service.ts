@@ -37,7 +37,7 @@ export class AuthService {
 
   signup(username: string, password: string) {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/signup';
+      'http://127.0.0.1:5000/signup';
 
     return this.http
       .post<SignUpResponseData>(
@@ -53,7 +53,7 @@ export class AuthService {
 
   login(username: string, password: string) {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/login';
+      'http://127.0.0.1:5000/login';
     return this.http
       .post<AuthResponseData>(
         reqUrl,
@@ -72,7 +72,7 @@ export class AuthService {
   }
 
   logout() {
-    const req_url = 'https://youtube-transcript-summarizer-pzc3.onrender.com/logout';
+    const req_url = 'http://127.0.0.1:5000/logout';
     return this.http.post(req_url, {}, { headers: this.headers }).pipe(
       catchError(this.handleError),
       tap((res) => {

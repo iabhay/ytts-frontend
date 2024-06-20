@@ -14,7 +14,7 @@ export class ProfileService {
 
   profileData() {
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/user/profile';
+      'http://127.0.0.1:5000/user/profile';
     return this.http.get(reqUrl).pipe(catchError(this.handleError));
   }
 
@@ -31,13 +31,13 @@ export class ProfileService {
 
   updateRole(userType: String){
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/'+userType;
+      'http://127.0.0.1:5000/'+userType;
     return this.http.put(reqUrl,{}).pipe(catchError(this.handleError));
   }
 
-  sendMessage(userMessage: String){
+  sendMessage(userMessage){
     const reqUrl =
-      'https://youtube-transcript-summarizer-pzc3.onrender.com/message';
+      'http://127.0.0.1:5000/message';
     return this.http.post(reqUrl, userMessage).pipe(catchError(this.handleError));
   }
 }
